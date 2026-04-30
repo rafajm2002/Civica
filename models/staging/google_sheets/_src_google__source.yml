@@ -26,3 +26,10 @@ sources:
           - name: quantity 
           - name: month
           - name: _fivetran_synced
+      
+      - name: users
+        columns:
+          - name: Nombre
+          - name: DNI
+          - name: email
+          - name: fecha_alta_sistema
