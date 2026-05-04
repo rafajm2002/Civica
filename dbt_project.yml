@@ -1,8 +1,9 @@
+# dbt_project.yml
 
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_project'
+name: 'Civica'
 version: '1.0.0'
 config-version: 2
 
@@ -36,7 +37,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  my_new_project:
-    # Applies to all files under models/example/
-    example:
+  Civica:
+    staging:
+      +database: DB_55_SILVER_DB
+      +schema:  staging
+      +materialized: view
+
+    marts:
+      +database: DB_55_GOLD_DB
+      +schema: marts
       +materialized: table
