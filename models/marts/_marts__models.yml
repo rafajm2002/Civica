@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: dim_time
+    description: Tabla de fechas para la semantic layer
+
+    time_spine:
+      standard_granularity_column: date_day
+
+    columns:
+      - name: date_day
+        description: Día
+        granularity: day
+
+  - name: fct_orders
+    description: Hechos de pedidos del e-commerce demo. Una fila por order_id.
+
+    semantic_model:
+      enabled: true
+      name: orders
+
+    agg_time_dimension: order_date
+
+    columns:
+      - name: order_id
+        entity:
+          type: primary
+          name: orders
+
+      - name: user_id
+        entity:
+          type: foreign
+          name: user
+
+      - name: order_date
+        granularity: day
+        dimension:
+          type: time
+
+      - name: status
+        dimension:
+          type: categorical
+
+      - name: address_country
+        dimension:
+          type: categorical
+          name: country
+
+    metrics:
+      - name: total_revenue
+        label: Total revenue
+        type: simple
+        agg: sum
+        expr: order_total
+
+      - name: total_orders
+        label: Total orders
+        type: simple
+        agg: count
+        expr: order_id
+
+      - name: total_unique_buyers
+        label: Total unique buyers
+        type: simple
+        agg: count_distinct
+        expr: user_id

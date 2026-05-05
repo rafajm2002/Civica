@@ -1,14 +1,11 @@
---macros/generate_database_name.sql
---nombre EXACTO obligatorio
+-- macros/generate_database_name.sql
 
-{% macro generate_database_name(
-    custom_database_name, node
-) -%}
+{% macro generate_database_name(custom_database_name, node) -%}
 
-    {%-if custom_database_name is not none -%}
+    {%- if custom_database_name is not none -%}
         {{ custom_database_name | trim }}
-    {%-else -%}
+    {%- else -%}
         {{ target.database | trim }}
-    {%-endif -%}
-
-{%-endmacro %}
+    {%- endif -%}
+    
+{%- endmacro %}

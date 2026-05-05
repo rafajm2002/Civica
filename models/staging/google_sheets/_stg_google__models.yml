@@ -3,7 +3,7 @@ version: 2
 
 models:
   - name: stg_google_sheets__budget
-    description: ""
+    description: "Tabla silver de presupuestos"
     columns:
       - name: _row
         data_type: number
